@@ -15,6 +15,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import Button from '@mui/material/Button';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,6 +56,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+const navItems = ['Home', 'Add Product', 'Login'];
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -119,7 +122,27 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
+      {' '}
+      {navItems.map(item => {
+        if (item.toLowerCase() === 'login') {
+          return (
+            <MenuItem>
+              <Button variant="contained" sx={{ backgroundColor: 'red' }}>
+                {item}
+              </Button>
+            </MenuItem>
+          );
+        }
+
+        return (
+          <MenuItem>
+            <Button key={item} sx={{ color: 'error' }}>
+              {item}
+            </Button>
+          </MenuItem>
+        );
+      })}
+      {/* <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
@@ -150,7 +173,7 @@ export default function PrimarySearchAppBar() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
-      </MenuItem>
+      </MenuItem> */}
     </Menu>
   );
 
@@ -186,7 +209,25 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
+            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+              {navItems.map(item => {
+                if (item.toLowerCase() === 'login') {
+                  return (
+                    <Button variant="contained" sx={{ backgroundColor: 'red' }}>
+                      {item}
+                    </Button>
+                  );
+                }
+
+                return (
+                  <Button key={item} sx={{ color: '#fff' }}>
+                    {item}
+                  </Button>
+                );
+              })}
+            </Box>
+
+            {/* <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
@@ -214,7 +255,7 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
