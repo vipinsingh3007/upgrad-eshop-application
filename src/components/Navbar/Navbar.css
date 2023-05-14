@@ -1,0 +1,25 @@
+.navContent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  width: 300px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.linkNav {
+  color: white;
+  /* text-decoration: none; */
+  margin: 0 20px 0 20px;
+}
