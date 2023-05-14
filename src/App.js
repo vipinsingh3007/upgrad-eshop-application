@@ -10,6 +10,7 @@ import {
   ProductDetails,
   Checkout,
   UpdateProduct,
+  ErrorPage,
 } from './components';
 import { AuthContextProvider } from './context/authContext';
 
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '/',
