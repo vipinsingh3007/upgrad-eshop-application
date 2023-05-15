@@ -1,0 +1,13 @@
+.categories {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+}
+
+.linkCat {
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+}

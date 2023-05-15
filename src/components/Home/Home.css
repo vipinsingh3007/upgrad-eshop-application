@@ -1,0 +1,24 @@
+.home {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.products {
+  margin: 2% 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alert {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #0f5132;
+  background-color: #d1e7dd;
+}

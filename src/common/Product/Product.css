@@ -1,0 +1,37 @@
+.card {
+  margin: 0 6%;
+  position: relative;
+}
+
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  /* gap: 16px; */
+}
+
+.price {
+  width: 40%;
+  text-align: right;
+}
+
+.productName {
+  width: 60%;
+  text-align: left;
+}
+
+.CTA {
+  position: absolute;
+  width: 93%;
+  bottom: 1%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.buy {
+  text-decoration: none;
+}
+
+.adminOps {
+  font-size: 12px;
+}
