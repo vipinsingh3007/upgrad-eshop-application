@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
-
 import { ToastContainer, toast } from 'react-toastify';
-
 import {
   Avatar,
   Button,
@@ -14,9 +12,7 @@ import {
   Typography,
   Container,
 } from '@mui/material';
-
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-
 import { AuthContext } from '../../context/authContext.js';
 
 function Copyright(props) {
