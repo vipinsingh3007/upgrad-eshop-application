@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Navbar from '../Navbar/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
+import * as config from '../../apiConfig';
 import { AuthContext } from '../../context/authContext';
+
+const { axios, urlPrefix } = config;
 
 import {
   Avatar,
@@ -101,7 +102,7 @@ const Signup = () => {
     // in the case of user login, use admin token to get user database
     if (newAdminToken) {
       try {
-        const res = await axios.get(`/users`, {
+        const res = await axios.get(`${urlPrefix}/users`, {
           headers: {
             accept: 'application/json',
             Authorization: `Bearer ${newAdminToken}`,
@@ -136,7 +137,7 @@ const Signup = () => {
     if (validation === false) {
       try {
         // sign up for the application
-        const res = await axios.post('/auth/signup', input);
+        const res = await axios.post(`${urlPrefix}/auth/signup`, input);
         console.log(res);
         //updating the user list with the new added user for login process
         gettingUsersData(newAdminToken);

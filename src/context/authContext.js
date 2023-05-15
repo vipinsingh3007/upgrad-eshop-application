@@ -1,10 +1,10 @@
-import axios from 'axios';
-
 import { createContext, useEffect, useState } from 'react';
 
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+
+import { axios, urlPrefix } from '../apiConfig';
 
 export const AuthContext = createContext();
 
@@ -38,7 +38,7 @@ export const AuthContextProvider = ({ children }) => {
   //getting user list with admin token input
   const getUsersContext = async tokenInput => {
     try {
-      const res = await axios.get(`/users`, {
+      const res = await axios.get(`${urlPrefix}/users`, {
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${newAdminToken || tokenInput}`,
@@ -68,7 +68,7 @@ export const AuthContextProvider = ({ children }) => {
   // checking if the user signed in is an admin, then save the admin token
   const checkingAdmin = async token => {
     try {
-      const res = await axios.get(`/users`, {
+      const res = await axios.get(`${urlPrefix}/users`, {
         headers: {
           accept: 'application/json',
           Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async inputs => {
     try {
-      const res = await axios.post('/auth/signin', inputs); ///login
+      const res = await axios.post(`${urlPrefix}/auth/signin`, inputs); ///login
       setToken(res.data.token);
       localStorage.setItem('access-token', JSON.stringify(res.data.token));
       // checking if it is an admin user
@@ -131,7 +131,7 @@ export const AuthContextProvider = ({ children }) => {
   // API call on the "/products"
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('/products');
+      const res = await axios.get(`${urlPrefix}/products`);
       setProducts(res.data);
     } catch (err) {
       console.log(err);
@@ -145,7 +145,7 @@ export const AuthContextProvider = ({ children }) => {
   // API  call on the "/categories"
   const fetchCategories = async () => {
     try {
-      const res = await axios.get('/products/categories');
+      const res = await axios.get(`${urlPrefix}/products/categories`);
       setCategoryList(res.data);
     } catch (err) {
       console.log(err);
