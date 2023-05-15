@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import { AuthContext } from '../../context/authContext.js';
-
+import { axios, urlPrefix } from '../../apiConfig';
 import { Grid } from '@mui/material';
 import {
   Product,
@@ -61,22 +60,17 @@ const Home = () => {
   // this is used for sorting products in the select section
   const handleChange = async val => {
     setSelect(val);
-    // sorting product in the ascending order
     if (val === 'asc') {
       setProducts(products =>
         products.sort((a, b) => parseFloat(a.price) - parseFloat(b.price)),
       );
-      // order products in the descending order
     } else if (val === 'desc') {
       setProducts(products =>
         products.sort((a, b) => parseFloat(b.price) - parseFloat(a.price)),
       );
-      // for order the product from the newest
     } else if (val === 'new') {
-      // getting the product list from the database and then manipulate the returned array
       try {
-        const res = await axios.get('/products');
-        // as the newest product is placed at the end of the returned array, reverse the array to make newest sorting
+        const res = await axios.get(`${urlPrefix}/products`);
         const newest = res.data.reverse();
         setProducts(newest);
       } catch (err) {
@@ -92,13 +86,11 @@ const Home = () => {
       <ConfirmDialog />
       <ToastContainer autoClose={2000} theme="colored" />
 
-      {/* passing a function here when there is any action from the users in the categries files */}
       <Categories
         setCurrentCategoryFunc={setCurrentCategory}
         currentCategory={currentCategory}
         deleteProduct={deleteProduct}
       />
-      {/* passing the handlechange function for getting the passing value  */}
       <SortBy handleChangeFunc={handleChange} />
 
       <main className="products">

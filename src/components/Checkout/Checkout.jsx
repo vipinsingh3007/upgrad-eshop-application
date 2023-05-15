@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { axios, urlPrefix } from '../../apiConfig';
 
 import {
   Grid,
@@ -109,7 +109,7 @@ const Checkout = () => {
     e.preventDefault();
     //Posting data to the database below and check if any errors
     try {
-      await axios.post('/orders', input, {
+      await axios.post(`${urlPrefix}/orders`, input, {
         headers: {
           Authorization: 'Bearer ' + token,
         },

@@ -11,7 +11,7 @@ import {
 import { AuthContext } from '../../context/authContext';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
+import { axios, urlPrefix } from '../../apiConfig';
 
 import './AddressForm.css';
 
@@ -46,7 +46,7 @@ const AddressForm = ({ saveAddressFunc }) => {
   // getting the addresses per user id
   const fetchAddress = async () => {
     try {
-      const res = await axios.get(`/addresses`, {
+      const res = await axios.get(`${urlPrefix}/addresses`, {
         headers: {
           Authorization: 'Bearer ' + token,
         },
@@ -65,7 +65,7 @@ const AddressForm = ({ saveAddressFunc }) => {
   // this function is used to validate the input before address submission
   const fetchAndTestAddress = async () => {
     try {
-      const res = await axios.get(`/addresses`, {
+      const res = await axios.get(`${urlPrefix}/addresses`, {
         headers: {
           Authorization: 'Bearer ' + token,
         },
@@ -108,7 +108,7 @@ const AddressForm = ({ saveAddressFunc }) => {
     if (validatingInput) {
       try {
         //save address in the database
-        await axios.post('/addresses', input, {
+        await axios.post(`${urlPrefix}/addresses`, input, {
           headers: {
             Authorization: 'Bearer ' + token,
           },

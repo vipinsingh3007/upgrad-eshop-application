@@ -3,13 +3,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import Categories from '../../common/Categories/Categories';
 import { Grid, Box, Typography, Chip, TextField, Button } from '@mui/material';
-
 import { AuthContext } from '../../context/authContext';
-
 import { ToastContainer } from 'react-toastify';
-
 import './ProductDetails.css';
-import axios from 'axios';
+import { axios, urlPrefix } from '../../apiConfig';
 
 const ProductDetail = () => {
   const [num, setNum] = useState(1);
@@ -31,7 +28,7 @@ const ProductDetail = () => {
     // getting the product per product id through api call
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`/products/${productId}`);
+        const res = await axios.get(`${urlPrefix}/products/${productId}`);
 
         setProduct(res.data);
         setCategoryText(res.data.category);

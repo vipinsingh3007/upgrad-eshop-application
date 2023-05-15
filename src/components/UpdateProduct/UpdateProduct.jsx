@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { AuthContext } from '../../context/authContext';
-
 import CreatableSelect from 'react-select/creatable';
+import { axios, urlPrefix } from '../../apiConfig';
 
 import {
   Button,
@@ -80,7 +79,7 @@ const UpdateProduct = () => {
 
     const getProduct = async () => {
       try {
-        const res = await axios.get(`/products/${productId}`);
+        const res = await axios.get(`${urlPrefix}/products/${productId}`);
         setInput(res.data);
       } catch (err) {
         console.log(err);
@@ -143,7 +142,7 @@ const UpdateProduct = () => {
     // as dealing with modifying product, we use api with product id to update the respective product
     if (productId) {
       try {
-        await axios.put(`/products/${productId}`, input, {
+        await axios.put(`${urlPrefix}/products/${productId}`, input, {
           headers: {
             accept: 'application/json',
             Authorization: `Bearer ` + token,
@@ -159,7 +158,7 @@ const UpdateProduct = () => {
     } else {
       // if there is no product id, we use post request in the api call to add a new product
       try {
-        await axios.post(`/products`, input, {
+        await axios.post(`${urlPrefix}/products`, input, {
           headers: {
             accept: 'application/json',
             Authorization: `Bearer ` + token,

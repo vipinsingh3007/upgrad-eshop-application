@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { axios, urlPrefix } from '../../apiConfig';
 import { AuthContext } from '../../context/authContext';
 
 import {
@@ -40,7 +40,7 @@ const Product = props => {
     confirmDialog('Are you sure you want to delete the product?', async () => {
       // API call to delete a product per id
       try {
-        await axios.delete(`/products/${id}`, {
+        await axios.delete(`${urlPrefix}/products/${id}`, {
           headers: {
             accept: 'application/json',
             Authorization: `Bearer ` + token,
